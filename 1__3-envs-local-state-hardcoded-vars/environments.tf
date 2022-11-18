@@ -5,7 +5,7 @@ provider "aws" {
 
 ## VPC and subnets
 resource "aws_vpc" "main" {
-  cidr_block       = "10.25.0.0/16"
+  cidr_block = "10.25.0.0/16"
 
   tags = {
     Name = "Main"
@@ -29,11 +29,11 @@ resource "aws_security_group" "dev_server" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description      = "HTTPS"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = [aws_vpc.main.cidr_block]
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   egress {
@@ -50,12 +50,12 @@ resource "aws_security_group" "dev_server" {
 }
 
 resource "aws_instance" "dev_server" {
-  ami           = "ami-0533f2ba8a1995cf9"
-  instance_type = "t3a.medium"
-  key_name      = "some_key"
-  vpc_security_group_ids = [aws_security_group.dev_server.id]
-  associate_public_ip_address  = true
-  subnet_id     = aws_subnet.public.id
+  ami                         = "ami-0533f2ba8a1995cf9"
+  instance_type               = "t3a.medium"
+  key_name                    = "some_key"
+  vpc_security_group_ids      = [aws_security_group.dev_server.id]
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.public.id
 
   tags = {
     Name = "dev-server"
@@ -70,11 +70,11 @@ resource "aws_security_group" "qa_server" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description      = "HTTPS"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = [aws_vpc.main.cidr_block]
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   egress {
@@ -91,12 +91,12 @@ resource "aws_security_group" "qa_server" {
 }
 
 resource "aws_instance" "qa_server" {
-  ami           = "ami-0533f2ba8a1995cf9"
-  instance_type = "t3a.medium"
-  key_name      = "some_key"
-  vpc_security_group_ids = [aws_security_group.qa_server.id]
-  associate_public_ip_address  = true
-  subnet_id     = aws_subnet.public.id
+  ami                         = "ami-0533f2ba8a1995cf9"
+  instance_type               = "t3a.medium"
+  key_name                    = "some_key"
+  vpc_security_group_ids      = [aws_security_group.qa_server.id]
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.public.id
 
   tags = {
     Name = "qa-server"
@@ -110,11 +110,11 @@ resource "aws_security_group" "production_server" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description      = "HTTPS"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = [aws_vpc.main.cidr_block]
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   egress {
@@ -131,12 +131,12 @@ resource "aws_security_group" "production_server" {
 }
 
 resource "aws_instance" "production_server" {
-  ami           = "ami-0533f2ba8a1995cf9"
-  instance_type = "t3a.medium"
-  key_name      = "some_key"
-  vpc_security_group_ids = [aws_security_group.production_server.id]
-  associate_public_ip_address  = true
-  subnet_id     = aws_subnet.public.id
+  ami                         = "ami-0533f2ba8a1995cf9"
+  instance_type               = "t3a.medium"
+  key_name                    = "some_key"
+  vpc_security_group_ids      = [aws_security_group.production_server.id]
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.public.id
 
   tags = {
     Name = "production-server"

@@ -2,6 +2,8 @@ locals {
   aws_region   = "us-east-1"
   state_bucket = "terragrunt-demo-state"
   state_path   = "two-envs-one-vpc"
+
+  envs = read_terragrunt_config(find_in_parent_folders("env.hcl"))
 }
 
 # Generate an AWS provider block
@@ -29,3 +31,7 @@ remote_state {
     encrypt = true
   }
 }
+
+inputs = merge(
+  local.envs.locals,
+)
