@@ -1,6 +1,6 @@
 locals {
   aws_region   = "us-east-1"
-  state_bucket = "terragrunt-demo-state"
+  state_bucket = "terragrunt-demo-state-new"
   state_path   = "two-envs-one-vpc"
 }
 
